@@ -1,0 +1,16 @@
+.grid {
+  height: 800px;
+  width: 1600px;
+}
+.grid-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.toolbar {
+  height: 50px;
+  width: 1600px;
+  background-color: bisque;
+  padding-bottom: 20px;
+}
