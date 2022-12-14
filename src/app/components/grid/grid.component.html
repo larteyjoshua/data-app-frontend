@@ -1,11 +1,22 @@
 <div class="grid-container">
-  <div class="toolbar">
-    <h1>Data App</h1>
+    <div class="toolbar">
+        <h1>Data App</h1>
 
-  </div>
-<ag-grid-angular
-    class="grid ag-theme-alpine"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs">
-</ag-grid-angular>
+    </div>
+    <div class="dropdown-list">
+        <label class="answer-label">Answers</label>
+        <p-dropdown
+            [options]="solutions"
+            [ngModel]="selectedSolution.value"
+            optionLabel="identifier"
+            optionValue="value"
+            (onChange)="filterData($event.value)"
+        ></p-dropdown>
+    </div>
+    <ag-grid-angular
+        class="grid ag-theme-alpine"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+    >
+    </ag-grid-angular>
 </div>
