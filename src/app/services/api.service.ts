@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ApiService {
-   url = 'https://data-app.herokuapp.com'
+   url = 'https://fastapi-faker-data-app.onrender.com'
 
 
   constructor(private httpClient: HttpClient) { }

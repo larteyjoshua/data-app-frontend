@@ -37,16 +37,12 @@ export class GridComponent implements OnInit {
       { identifier: '100 Data point', value: 'dataPoint' },
       { identifier: '500 Data point', value: 'dataPointFiveHundred' },
     ];
-
   }
   ngOnInit(): void {
-
-
     this.service.getData().subscribe((response) => {
       this.data = response;
       // console.log('Full data', response);
       if (this.data.length > 0) {
-
         this.selectedSolution = this.solutions[0];
         this.rowData = this.data;
       }

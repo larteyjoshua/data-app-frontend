@@ -1,26 +1,27 @@
-:host ::ng-deep {.grid {
-  height: 800px;
-  width: 1600px;
-}
-.grid-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+:host ::ng-deep {
+  .grid {
+    height: 800px;
+    width: 1600px;
+  }
+  .grid-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 
-.toolbar {
-  height: 70px;
-  width: 1600px;
-  background-color: bisque;
-  padding-bottom: 20px;
-}
-.dropdown-list {
-  margin: 20px;
-  gap: 20px;
-}
-.answer-label {
-  margin-right: 10px;
-  font-size: 20px;
-  font-weight: bold;
-}
+  .toolbar {
+    height: 70px;
+    width: 1600px;
+    background-color: bisque;
+    padding-bottom: 20px;
+  }
+  .dropdown-list {
+    margin: 20px;
+    gap: 20px;
+  }
+  .answer-label {
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
