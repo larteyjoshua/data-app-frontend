@@ -17,10 +17,28 @@ export class GridComponent implements OnInit {
   columnDefs: ColDef[] = [
     { field: 'name', headerName: 'Name' },
     { field: 'job', headerName: 'Job' },
-    { field: 'phone_number', headerName: 'PhoneNumber' },
+    { field: 'phone_number', headerName: 'PhoneNumber',
+    cellRenderer: (params:any) =>{
+      return (params?.value?.startsWith('+'))?
+      ('<span><i class="pi pi-check" style="font-size: 1rem;  color: green; margin-right: 2px"></i>' + params.value + '</span>'):
+       params.value}
+
+  } ,
     { field: 'company', headerName: 'Company' },
-    { field: 'account', headerName: 'Account' },
-    { field: 'swift', headerName: 'Swift' },
+    { field: 'account', headerName: 'Account',
+    cellRenderer: function(params:any) {
+        return( params?.data?.account.length <= 14)?
+        ('<span><i class="pi pi-calendar-times" style="font-size: 1rem; color: red; margin-right: 2px"></i>' + params.value + '</span>'):
+         params.value
+        }
+    },
+
+    { field: 'swift', headerName: 'Swift',
+    cellRenderer: (params:any) =>{
+        return ((params?.value?.match(/X/g) || []).length === 4)?
+        ('<span><i class="pi pi-check" style="font-size: 1rem;  color: green; margin-right: 2px"></i>' + params.value + '</span>'):
+         params.value}
+       },
     { field: 'balance', headerName: 'Balance' },
     { field: 'code', headerName: 'Code' },
   ];
