@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, GridOptions } from 'ag-grid-community';
 import { Solution } from '../../models/index';
 
 @Component({
@@ -13,6 +13,8 @@ export class GridComponent implements OnInit {
   public data: any = [];
   solutions: Solution[] = [];
   selectedSolution: Solution = {};
+  public gridApi:any;
+  public gridColumnApi:any;
 
   columnDefs: ColDef[] = [
     { field: 'name', headerName: 'Name' },
@@ -20,7 +22,7 @@ export class GridComponent implements OnInit {
     { field: 'phone_number', headerName: 'PhoneNumber',
     cellRenderer: (params:any) =>{
       return (params?.value?.startsWith('+'))?
-      ('<span><i class="pi pi-check" style="font-size: 1rem;  color: green; margin-right: 2px"></i>' + params.value + '</span>'):
+      ('<span><i class="pi pi-phone" style="font-size: 1rem;  color: green; margin-right: 2px"></i>' + params.value + '</span>'):
        params.value}
 
   } ,
@@ -39,9 +41,37 @@ export class GridComponent implements OnInit {
         ('<span><i class="pi pi-check" style="font-size: 1rem;  color: green; margin-right: 2px"></i>' + params.value + '</span>'):
          params.value}
        },
-    { field: 'balance', headerName: 'Balance' },
+    { field: 'balance', headerName: 'Balance',  cellStyle: params => {
+      const removeSymbol = parseFloat(params.value.slice(1).replace(/,/g, ''));
+          console.log(removeSymbol > 1000)
+      if (removeSymbol > 1000) {
+          //mark police cells as red
+          return {color: 'green', backgroundColor: '', fontWeight: 'bold'};
+      }
+      else {
+        return {color: 'red', backgroundColor: '',  fontWeight: 'bold'};
+      }
+      }},
+
+
     { field: 'code', headerName: 'Code' },
   ];
+
+   gridOptions:GridOptions ={
+    pagination: true,
+  rowClassRules:  {
+    'engineer-row': function(params) { return params.data.job.includes('Engineer')},
+  },
+
+  }
+
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+  onRowDataChanged(){
+    this.gridColumnApi.autoSizeColumns()
+  }
 
   constructor(private service: ApiService) {
     this.solutions = [
