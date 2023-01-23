@@ -1,7 +1,7 @@
 :host ::ng-deep {
   .grid {
     height: 800px;
-    width: 1600px;
+    width: inherit;
   }
   .grid-container {
     display: flex;
@@ -11,7 +11,7 @@
 
   .toolbar {
     height: 70px;
-    width: 1600px;
+    width: inherit;
     background-color: bisque;
     padding-bottom: 20px;
   }
